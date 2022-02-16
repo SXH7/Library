@@ -1,7 +1,11 @@
+from asyncore import read
 from pydoc import importfile
 import mysql.connector as i
-g=open("password.txt").read
-log=i.connect(host="localhost",user="root",password=g,database="library")
+
+y=open("C:\\Users\\lenovo pc\\python\\password.txt")
+pas=y.read()
+
+log=i.connect(host="localhost",user="root",password=pas,database="library")
 
 def addbook():
     bn=input("Enter the book name:")
@@ -11,4 +15,8 @@ def addbook():
     data = (bn,c,t,s)
     sql='insert into book values(%s,%s,%s,%s)'
     c=log.cursor()
-    c.execute
+    c.execute(sql,data)
+    log.commit()
+    print("Book(s) Added sucessfully")
+    print("------------------------------------------------------------------")
+
